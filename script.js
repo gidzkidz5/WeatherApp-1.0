@@ -15,11 +15,17 @@ input.addEventListener('keypress', function(e) {
 search.addEventListener('click', () => {
 
     const API = 'aac55dcf7aa50bd9e20f7182e96b71c9'
-    const city = document.querySelector('.search-box input').value;
+    let city = document.querySelector('.search-box input').value;
+    if (document.querySelector('.search-box input').value.toLowerCase() === 'melbourne'){
+        city = city + ',AU';
+    } else {
+        city = document.querySelector('.search-box input').value;
+    }
 
     if (city === ''){
         return;}
     
+    // console.log(city);
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API}`)
     .then(response => response.json())
